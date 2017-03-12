@@ -25,7 +25,7 @@
 
     <groupId>org.jnosql</groupId>
     <artifactId>jnosql-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -254,6 +254,6 @@
         <name>jnosql-maven</name>
         <url>https://api.bintray.com/maven/jnosql/maven/org.jnosql:jnosql-parent/;publish=1</url>
     </repository>
-    </distributionManagement>
+  </distributionManagement>
 
 </project>

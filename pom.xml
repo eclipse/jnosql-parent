@@ -74,156 +74,159 @@
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven.checkstyle.plugin.version}</version>
-            <executions>
-                <execution>
-                    <id>verify-style</id>
-                    <phase>process-classes</phase>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-            <logViolationsToConsole>true</logViolationsToConsole>
-            <consoleOutput>true</consoleOutput>
-                <checkstyleRules>
-                    <module name="Checker">
-                        <module name="SuppressionCommentFilter" />
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-style</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <logViolationsToConsole>true</logViolationsToConsole>
+                    <consoleOutput>true</consoleOutput>
+                    <checkstyleRules>
+                        <module name="Checker">
+                            <module name="SuppressionCommentFilter"/>
 
-                        <!-- Checks for Size Violations.                    -->
-                        <!-- See http://checkstyle.sf.net/config_sizes.html -->
-                        <module name="FileLength">
-                            <property name="max" value="3500" />
-                            <property name="fileExtensions" value="java" />
+                            <!-- Checks for Size Violations.                    -->
+                            <!-- See http://checkstyle.sf.net/config_sizes.html -->
+                            <module name="FileLength">
+                                <property name="max" value="3500"/>
+                                <property name="fileExtensions" value="java"/>
+                            </module>
+
+                            <!-- Checks for whitespace                               -->
+                            <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+                            <module name="FileTabCharacter"/>
+
+                            <!-- allow usage of CHECKSTYLE:OFF and CHECKSTYLE:ON -->
+                            <module name="SuppressionCommentFilter"/>
+
+                            <module name="TreeWalker">
+                                <!-- needed for the SuppressionCommentFilter -->
+                                <module name="FileContentsHolder"/>
+
+                                <!-- Checks for Naming Conventions.                  -->
+                                <!-- See http://checkstyle.sf.net/config_naming.html -->
+                                <module name="ConstantName">
+                                    <!-- 0=Allowed, 1=Disallowed  (see checkConstants.sh in pom source tree)
+                                      0 foo
+                                      0 fooBar
+                                      0 fooBarBaz
+                                      0 FOO
+                                      0 FOO_BAR
+                                      0 FOO_BAR_BAZ
+                                      0 _fooBar
+                                      0 f9
+                                      0 F9_C3
+                                      1 FooBar
+                                      1 foo_bar
+                                      1 FOO__BAR
+                                      1 _FOO
+                                      1 foo_
+                                      1 FOO_
+                                       -->
+                                    <property name="format" value="^(_?[a-z][a-zA-Z0-9]*|([A-Z](_?[A-Z0-9]+)*))$"/>
+                                </module>
+
+                                <module name="LocalVariableName"/>
+                                <module name="MethodName">
+                                    <property name="format" value="^_?[a-z][a-zA-Z0-9]*$"/>
+                                </module>
+                                <module name="PackageName"/>
+                                <module name="LocalFinalVariableName"/>
+                                <module name="ParameterName"/>
+                                <module name="StaticVariableName"/>
+                                <module name="TypeName">
+                                    <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$"/>
+                                </module>
+
+                                <!-- Checks for imports                              -->
+                                <!-- See http://checkstyle.sf.net/config_import.html -->
+                                <module name="AvoidStarImport">
+                                    <property name="excludes"
+                                              value="java.io,java.net,java.util,javax.enterprise.inject.spi,javax.enterprise.context"/>
+                                </module>
+                                <module name="IllegalImport"/>
+                                <module name="RedundantImport"/>
+                                <module name="UnusedImports"/>
+
+
+                                <module name="LineLength">
+                                    <property name="max" value="180"/>
+                                    <property name="ignorePattern" value="@version|@see"/>
+                                </module>
+                                <module name="MethodLength">
+                                    <property name="max" value="250"/>
+                                </module>
+                                <module name="ParameterNumber">
+                                    <property name="max" value="15"/>
+                                </module>
+
+                                <!-- Checks for blocks. You know, those {}'s         -->
+                                <!-- See http://checkstyle.sf.net/config_blocks.html -->
+                                <module name="EmptyBlock">
+                                    <property name="option" value="text"/>
+                                </module>
+
+                                <module name="NeedBraces">
+                                    <property name="tokens"
+                                              value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE"/>
+                                </module>
+                                <module name="LeftCurly">
+                                    <property name="option" value="EOL"/>
+                                </module>
+                                <module name="RightCurly">
+                                    <property name="option" value="SAME"/>
+                                </module>
+
+                                <!-- Checks for common coding problems               -->
+                                <!-- See http://checkstyle.sf.net/config_coding.html -->
+                                <module name="EmptyStatement"/>
+                                <module name="EqualsHashCode"/>
+                                <module name="DefaultComesLast"/>
+                                <module name="MissingSwitchDefault"/>
+                                <module name="FallThrough"/>
+                                <module name="MultipleVariableDeclarations"/>
+
+                                <!-- Checks for class design                         -->
+                                <!-- See http://checkstyle.sf.net/config_design.html -->
+                                <module name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck">
+                                    <property name="severity" value="ignore"/>
+                                </module>
+
+                                <module name="HideUtilityClassConstructor"/>
+
+                                <module name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck">
+                                    <property name="packageAllowed" value="false"/>
+                                    <property name="protectedAllowed" value="true"/>
+                                    <property name="publicMemberPattern" value="^serialVersionUID"/>
+                                    <property name="severity" value="warning"/>
+                                </module>
+
+                                <module name="UpperEll"/>
+
+                                <module name="AnnotationLocation">
+                                    <property name="allowSamelineMultipleAnnotations" value="false"/>
+                                    <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+                                    <property name="allowSamelineParameterizedAnnotation" value="false"/>
+                                    <property name="tokens"
+                                              value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF"/>
+                                </module>
+                            </module>
                         </module>
-
-                        <!-- Checks for whitespace                               -->
-                        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-                        <module name="FileTabCharacter" />
-
-                        <!-- allow usage of CHECKSTYLE:OFF and CHECKSTYLE:ON -->
-                        <module name="SuppressionCommentFilter" />
-
-                        <module name="TreeWalker">
-                            <!-- needed for the SuppressionCommentFilter -->
-                            <module name="FileContentsHolder" />
-
-                            <!-- Checks for Naming Conventions.                  -->
-                            <!-- See http://checkstyle.sf.net/config_naming.html -->
-                            <module name="ConstantName">
-                                <!-- 0=Allowed, 1=Disallowed  (see checkConstants.sh in pom source tree)
-                                  0 foo
-                                  0 fooBar
-                                  0 fooBarBaz
-                                  0 FOO
-                                  0 FOO_BAR
-                                  0 FOO_BAR_BAZ
-                                  0 _fooBar
-                                  0 f9
-                                  0 F9_C3
-                                  1 FooBar
-                                  1 foo_bar
-                                  1 FOO__BAR
-                                  1 _FOO
-                                  1 foo_
-                                  1 FOO_
-                                   -->
-                                <property name="format" value="^(_?[a-z][a-zA-Z0-9]*|([A-Z](_?[A-Z0-9]+)*))$" />
-                            </module>
-
-                            <module name="LocalVariableName" />
-                            <module name="MethodName">
-                                <property name="format" value="^_?[a-z][a-zA-Z0-9]*$" />
-                            </module>
-                            <module name="PackageName" />
-                            <module name="LocalFinalVariableName" />
-                            <module name="ParameterName" />
-                            <module name="StaticVariableName" />
-                            <module name="TypeName">
-                                <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$" />
-                            </module>
-
-                            <!-- Checks for imports                              -->
-                            <!-- See http://checkstyle.sf.net/config_import.html -->
-                            <module name="AvoidStarImport">
-                                <property name="excludes" value="java.io,java.net,java.util,javax.enterprise.inject.spi,javax.enterprise.context" />
-                            </module>
-                            <module name="IllegalImport" />
-                            <module name="RedundantImport" />
-                            <module name="UnusedImports" />
-
-
-                            <module name="LineLength">
-                                <property name="max" value="180" />
-                                <property name="ignorePattern" value="@version|@see" />
-                            </module>
-                            <module name="MethodLength">
-                                <property name="max" value="250" />
-                            </module>
-                            <module name="ParameterNumber">
-                                <property name="max" value="15" />
-                            </module>
-
-                            <!-- Checks for blocks. You know, those {}'s         -->
-                            <!-- See http://checkstyle.sf.net/config_blocks.html -->
-                            <module name="EmptyBlock">
-                                <property name="option" value="text" />
-                            </module>
-
-                            <module name="NeedBraces">
-                                <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE" />
-                            </module>
-                            <module name="LeftCurly">
-                                <property name="option" value="EOL" />
-                            </module>
-                            <module name="RightCurly">
-                                <property name="option" value="SAME" />
-                            </module>
-
-                            <!-- Checks for common coding problems               -->
-                            <!-- See http://checkstyle.sf.net/config_coding.html -->
-                            <module name="EmptyStatement" />
-                            <module name="EqualsHashCode" />
-                            <module name="DefaultComesLast" />
-                            <module name="MissingSwitchDefault" />
-                            <module name="FallThrough" />
-                            <module name="MultipleVariableDeclarations" />
-
-                            <!-- Checks for class design                         -->
-                            <!-- See http://checkstyle.sf.net/config_design.html -->
-                            <module name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck">
-                                <property name="severity" value="ignore" />
-                            </module>
-
-                            <module name="HideUtilityClassConstructor" />
-
-                            <module name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck">
-                                <property name="packageAllowed" value="false" />
-                                <property name="protectedAllowed" value="true" />
-                                <property name="publicMemberPattern" value="^serialVersionUID" />
-                                <property name="severity" value="warning" />
-                            </module>
-
-                            <module name="UpperEll" />
-
-                            <module name="AnnotationLocation">
-                                <property name="allowSamelineMultipleAnnotations" value="false" />
-                                <property name="allowSamelineSingleParameterlessAnnotation" value="false" />
-                                <property name="allowSamelineParameterizedAnnotation" value="false" />
-                                <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF" />
-                            </module>
-                        </module>
-                    </module>
-                </checkstyleRules>
-            </configuration>
+                    </checkstyleRules>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
-                <version>0.11</version>
+                <version>0.12</version>
                 <configuration>
                     <includes>
                         <include>src/**/*.java</include>
@@ -232,6 +235,21 @@
                     </includes>
                     <excludes>
                     </excludes>
+                    <licenses>
+                        <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                            <licenseFamilyCategory>AL20-EPL10</licenseFamilyCategory>
+                            <licenseFamilyName>Apache License, 2.0 and Eclipse Public License, 1.0</licenseFamilyName>
+                            <patterns>
+                                <pattern>Apache License v2.0</pattern>
+                                <pattern>Eclipse Public License v1.0</pattern>
+                            </patterns>
+                        </license>
+                    </licenses>
+                    <licenseFamilies>
+                        <licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+                            <familyName>Apache License, 2.0 and Eclipse Public License, 1.0</familyName>
+                        </licenseFamily>
+                    </licenseFamilies>
                 </configuration>
                 <executions>
                     <execution>
@@ -246,11 +264,11 @@
     </build>
 
     <distributionManagement>
-    <repository>
-        <id>bintray-jnosql-maven</id>
-        <name>jnosql-maven</name>
-        <url>https://api.bintray.com/maven/jnosql/maven/org.jnosql:jnosql-parent/;publish=1</url>
-    </repository>
-  </distributionManagement>
+        <repository>
+            <id>bintray-jnosql-maven</id>
+            <name>jnosql-maven</name>
+            <url>https://api.bintray.com/maven/jnosql/maven/org.jnosql:jnosql-parent/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
 </project>

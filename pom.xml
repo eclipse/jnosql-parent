@@ -46,6 +46,15 @@
         <url>https://github.com/eclipse/jnosql-parent</url>
     </scm>
 
+    <developers>
+        <developer>
+            <name>Otavio Santana</name>
+            <email>otaviojava@apache.org</email>
+            <organization>SouJava</organization>
+            <organizationUrl>https://about.me/otaviojava</organizationUrl>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compile.targetLevel>1.8</maven.compile.targetLevel>

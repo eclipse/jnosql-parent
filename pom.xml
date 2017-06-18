@@ -27,7 +27,7 @@
 
     <name>JNoSQL-Parent</name>
     <description>JNoSQL parent where has the rules about license and check style.</description>
-    <url>https://github.com/eclipse/jnosql-parent</url>
+    <url>http://jnosql.org/</url>
 
     <licenses>
         <license>
@@ -39,6 +39,12 @@
             <url>http://www.eclipse.org/legal/epl-v10.html</url>
         </license>
     </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/eclipse/jnosql-parent.git</connection>
+        <developerConnection>scm:git:ssh://github.com:eclipse/jnosql-parent.git</developerConnection>
+        <url>https://github.com/eclipse/jnosql-parent</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

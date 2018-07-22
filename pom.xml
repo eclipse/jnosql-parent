@@ -86,6 +86,7 @@
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <javax.enterprise.version>2.0</javax.enterprise.version>
         <owb.version>2.0.3</owb.version>
+        <jacoco.maven.version>0.7.9</jacoco.maven.version>
     </properties>
 
     <build>

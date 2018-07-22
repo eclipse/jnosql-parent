@@ -84,6 +84,7 @@
         <javax.validation.version>1.1.0.Final</javax.validation.version>
         <weld.se.core.version>3.0.2.Final</weld.se.core.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <javax.enterprise.version>2.0</javax.enterprise.version>
         <owb.version>2.0.3</owb.version>
     </properties>
 

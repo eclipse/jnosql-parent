@@ -72,7 +72,7 @@
         <json.b.version>1.0.1</json.b.version>
         <junit.platform.surefire>1.0.3</junit.platform.surefire>
         <junit.version>5.0.3</junit.version>
-        <maven-javadoc-plugin.vesion>3.0.0</maven-javadoc-plugin.vesion>
+        <maven-javadoc-plugin.vesion>3.0.1</maven-javadoc-plugin.vesion>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
         <maven.compile.sourceLevel>1.8</maven.compile.sourceLevel>

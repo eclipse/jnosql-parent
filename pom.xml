@@ -77,7 +77,7 @@
         <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
         <maven.compile.sourceLevel>1.8</maven.compile.sourceLevel>
         <maven.compile.targetLevel>1.8</maven.compile.targetLevel>
-        <maven.compile.version>3.5.1</maven.compile.version>
+        <maven.compile.version>3.8.0</maven.compile.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <mockito.verson>2.22.0</mockito.verson>
         <org.awaitility.version>3.1.1</org.awaitility.version>

@@ -86,6 +86,7 @@
         <sonar.maven.version>3.3.0.603</sonar.maven.version>
         <testcontainers.version>1.8.1</testcontainers.version>
         <weld.se.core.version>3.0.5.Final</weld.se.core.version>
+        <checkstyle.excludes>**/antlr/**</checkstyle.excludes>
     </properties>
 
     <build>
@@ -161,6 +162,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <excludes>${checkstyle.excludes}</excludes>
                     <logViolationsToConsole>true</logViolationsToConsole>
                     <consoleOutput>true</consoleOutput>
                     <checkstyleRules>

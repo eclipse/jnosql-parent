@@ -68,6 +68,7 @@
         <javax.enterprise.version>2.0.SP1</javax.enterprise.version>
         <javax.json.bind.version>1.0</javax.json.bind.version>
         <javax.json.version>1.1.4</javax.json.version>
+        <yasson.version>1.0.3</yasson.version>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
         <json.b.version>1.0.2</json.b.version>
         <junit.version>5.4.0-M1</junit.version>
@@ -82,10 +83,10 @@
         <mockito.verson>2.23.4</mockito.verson>
         <org.awaitility.version>3.1.5</org.awaitility.version>
         <owb.version>2.0.3</owb.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.maven.version>3.3.0.603</sonar.maven.version>
         <testcontainers.version>1.9.1</testcontainers.version>
         <weld.se.core.version>3.0.5.Final</weld.se.core.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <checkstyle.excludes>**/antlr/**</checkstyle.excludes>
     </properties>
 
